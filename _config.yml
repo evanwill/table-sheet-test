@@ -1,0 +1,34 @@
+# CollectionBuilder 
+# Jekyll Digital Collection Generator
+
+# URL variables
+# site domain 
+# on GH-pages, following pattern https://yourusername.github.io
+url: https://evanwill.github.io
+# location on the domain
+# on GH-pages the repository name, /yourreponame
+baseurl: /table-sheet-test
+# location of code (repository link)
+source-code: https://github.com/evanwill/table-sheet-test
+
+# Site settings
+title: Sheets Demo
+# header and head metadata
+description: "Demo using google sheets with CollectionBuilder static web stack" 
+
+# name of metadata file, be sure to also change page_gen data setting!
+metadata: demo_psychiana 
+
+# Note: use environment variable on build command to include analytics
+# JEKYLL_ENV=production jekyll build
+# if present, used to add analytics during build
+google-analytics-id: 
+
+# add liquid profiler to id bottlenecks
+# profile: true
+
+exclude: [docs/, Rakefile, README.md, LICENSE]
+
+# compress CSS output
+sass:
+  style: compressed
