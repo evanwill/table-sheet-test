@@ -1,0 +1,33 @@
+# CollectionBuilder theme customization
+# values set here help configure details of individual pages in the website
+
+# Subject page
+subjects-page: true # true / false, turns off subject generation 
+subjects-fields: subject;creator # set of fields separated by ; to be featured in the cloud
+subjects-min: 1 # min size for subject cloud, too many terms = slow load time!
+subjects-stopwords: # set of subjects separated by ; that will be removed from display, e.g. boxers;boxing
+
+# Data 
+# add metadata fields for export in data downloads (tip: paste in first row of csv)
+# comma delimited list, reference url is automatic
+metadata-export-fields: "title,description,creator,recipient,date,date-is-approximate,latitude,longitude,item-information,subject,related-publication,publisher-digital,source,original-identifier,identifier,rights,rightsstatement,type,format,language,relation,cdmid,objectid,youtubeid"
+# generate a facets list for given fields, comma delimited
+metadata-facets-fields: "subject,creator,format"
+
+# Advanced Theme Options
+
+# navbar text color
+# Choose from "navbar-light" for use with light background colors, or "navbar-dark" for dark background colors
+navbar-color: navbar-dark
+# navbar background color
+# Choose from bg-primary, bg-secondary, bg-success, bg-danger, bg-warning, bg-info, bg-light, bg-dark, bg-white
+navbar-background: bg-dark
+# theme with Bootswatch (https://github.com/thomaspark/bootswatch)
+# Choose from: cerulean; cosmo; cyborg; darkly; flatly; journal; litera; lumen; lux; materia; minty; pulse; sandstone; simplex; sketchy; slate; solar; spacelab; superhero; united; yeti 
+bootswatch: # leave blank or comment out for plain bootstrap
+# Theme Fonts
+base-font-size: 1.2em
+text-color: "#191919"
+link-color: "#17a2b8"
+base-font-family: # comment out for bootstrap defaults. e.g. Roboto
+font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
