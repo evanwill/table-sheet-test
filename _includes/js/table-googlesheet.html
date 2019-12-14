@@ -1,7 +1,7 @@
 {% assign fields = site.data.config-table %}
 <script type="text/javascript" language="javascript" src="{{ '/assets/lib/datatables/datatables.min.js' | absolute_url }}"></script>
 <script>
-var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ page.google-sheet-id }}/od6/public/values?alt=json";
+var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ page.google-sheet-id }}/default/public/values?alt=json";
 $.getJSON(sheetUrl, function (data) {
     console.log("get success");
     var dataSet = [];
