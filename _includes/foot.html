@@ -6,3 +6,4 @@
 {% if page.layout == "data" %}{% include js/table-js.html %}{% endif %}
 {% if page.layout == "subjects" %}{% include js/cloud-js.html fields=site.data.theme.subjects-fields min=site.data.theme.subjects-min stopwords=site.data.theme.subjects-stopwords %}{% endif %}
 {% if page.layout == "google-sheet" %}{% include js/table-sheets2.html %}{% endif %}
+{% if page.layout == "cloud" %}{% include js/cloud-sheets.html %}{% endif %}

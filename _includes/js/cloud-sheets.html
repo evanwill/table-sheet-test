@@ -1,0 +1,38 @@
+<script>
+// json api for default first sheet
+var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ page.google-sheet-id }}/default/public/values?alt=json";
+// fetch the json and process it
+$.getJSON(sheetUrl, function (data) {
+    // grab only cloud field from data
+    var cloudData = data.feed.entry.map(function(row){
+        return row.gsx${{ page.cloud-field }}.$t;
+    });
+    // split multivalued fields and clean up extra white space
+    const re = /\s*;+\s*/;
+    var clean = cloudData.join(";").toLowerCase().split(re);
+    // count unique values
+    var terms = {};
+    for (var i = 0; i < clean.length; i++) {
+        terms[clean[i]] = 1 + (terms[clean[i]] || 0);
+    }
+    {% if page.stopwords %}/* apply stopwords */
+    var stopWords = {{ page.stopwords | downcase | split: ';' | jsonify }};
+    terms = terms.filter(function(a) { return stopWords.indexOf(a[0]) < 0;});{% endif %}
+    /* calculate max size */
+    var counts = Object.keys(terms).map(function(key){return terms[key]});
+    var countMax = counts.reduce(function(a, b) { return Math.max(a, b); });
+    // make cloud
+    var cloud = document.getElementById("cloud");
+    function mapSize(x) { return Math.round(x * 9 / countMax + 1); }
+    /* create cloud */
+    var i, size;
+    var a = Object.keys(terms);
+    var items = "";
+    for (i = 0; i < a.length; i++) {
+        size = mapSize(terms[a[i]]);
+        items += '<div class="btn btn-outline-primary m-2 tagcloud' + size + '">' + a[i] + '</div>';
+    }
+    cloud.innerHTML = items;
+});
+
+</script>

@@ -2,6 +2,10 @@
 title: Clouds
 layout: cloud
 permalink: /cloud.html
+# ID number of your google sheet
+google-sheet-id: 1dUAPI7nge5PWTksdUITA9IbgA_Csz2gtVSCnjWz1CjE
+# field to create a cloud from
+cloud-field: subject
 ---
 
 ## Browse Contents

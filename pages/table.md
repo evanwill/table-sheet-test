@@ -2,7 +2,7 @@
 title: Google Sheet Demo
 layout: google-sheet
 permalink: /table.html
-# ID number of yoru google sheet
+# ID number of your google sheet
 google-sheet-id: 1dUAPI7nge5PWTksdUITA9IbgA_Csz2gtVSCnjWz1CjE
 # column to sort on, 0 to number of columns
 sort-column: 1
