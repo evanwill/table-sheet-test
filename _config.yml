@@ -1,5 +1,21 @@
-# CollectionBuilder 
-# Jekyll Digital Collection Generator
+# web table 
+# Jekyll web table Generator
+
+# Site settings
+title: Sheets Demo
+# header and head metadata
+description: "Demo using google sheets with CollectionBuilder static web stack" 
+
+# ID number of your google sheet
+google-sheet-id: 1dUAPI7nge5PWTksdUITA9IbgA_Csz2gtVSCnjWz1CjE
+# column to sort on, 0 to number of columns [optional]
+sort-column: 1
+# order of sort, either asc or desc [optional]
+sort-order: desc
+# field to create a cloud from
+cloud-field: subject
+# stopwords to remove from cloud, ";" separated list [optional]
+cloud-stopwords: the;he
 
 # URL variables
 # site domain 
@@ -10,14 +26,6 @@ url: https://evanwill.github.io
 baseurl: /table-sheet-test
 # location of code (repository link)
 source-code: https://github.com/evanwill/table-sheet-test
-
-# Site settings
-title: Sheets Demo
-# header and head metadata
-description: "Demo using google sheets with CollectionBuilder static web stack" 
-
-# name of metadata file, be sure to also change page_gen data setting!
-metadata: demo_psychiana 
 
 # Note: use environment variable on build command to include analytics
 # JEKYLL_ENV=production jekyll build

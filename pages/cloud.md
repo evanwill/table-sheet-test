@@ -11,4 +11,4 @@ cloud-field: subject
 ## Browse Contents
 
 Use this word cloud visualization to browse terms and subjects.
-Word size is determined by frequency and all words link to a corresponding collection search.
+Word size is determined by frequency.
