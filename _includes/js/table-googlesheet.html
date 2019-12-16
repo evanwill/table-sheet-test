@@ -1,9 +1,10 @@
 {% assign fields = site.data.config-table %}
 <script type="text/javascript" language="javascript" src="{{ '/assets/lib/datatables/datatables.min.js' | absolute_url }}"></script>
 <script>
+// json api for default first sheet
 var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ page.google-sheet-id }}/default/public/values?alt=json";
+// fetch the json, then init datatables
 $.getJSON(sheetUrl, function (data) {
-    console.log("get success");
     var dataSet = [];
     var rows = data.feed.entry;
     $(rows).each(function () { 
