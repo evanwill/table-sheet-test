@@ -3,7 +3,18 @@
 <script src="{{ '/assets/lib/bootstrap.bundle.min.js' | absolute_url }}"></script>
 <!-- load other js -->
 {% if layout.lazyload == true or page.lazyload == true %}<script src="{{ '/assets/lib/lazysizes.min.js' | absolute_url }}" async></script>{% endif %}
-{% if page.layout == "data" %}{% include js/table-js.html %}{% endif %}
-{% if page.layout == "subjects" %}{% include js/cloud-js.html fields=site.data.theme.subjects-fields min=site.data.theme.subjects-min stopwords=site.data.theme.subjects-stopwords %}{% endif %}
-{% if page.layout == "google-sheet" %}{% include js/table-sheets2.html %}{% endif %}
-{% if page.layout == "cloud" %}{% include js/cloud-sheets.html %}{% endif %}
+{% if page.layout == "google-sheet" %}
+{% include js/table-sheets-js.html 
+    google-sheet-id=site.google-sheet-id 
+    fields=site.table-columns 
+    sort-column=site.sort-column
+    sort-order=site.sort-order
+%}
+{%- endif -%}
+{% if page.layout == "cloud" %}
+{% include js/cloud-sheets.html 
+    google-sheet-id=site.google-sheet-id 
+    cloud-field=site.cloud-field 
+    stopwords=site.cloud-stopwords 
+%}
+{%- endif -%}

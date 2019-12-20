@@ -1,11 +1,11 @@
 <script>
 // json api for default first sheet
-var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ page.google-sheet-id }}/default/public/values?alt=json";
+var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ include.google-sheet-id }}/default/public/values?alt=json";
 // fetch the json and process it
 $.getJSON(sheetUrl, function (data) {
     // grab only cloud field from data
     var cloudData = data.feed.entry.map(function(row){
-        return row.gsx${{ page.cloud-field }}.$t;
+        return row.gsx${{ include.cloud-field }}.$t;
     });
     // split multivalued fields and clean up extra white space
     const re = /\s*;+\s*/;
@@ -15,9 +15,9 @@ $.getJSON(sheetUrl, function (data) {
     for (var i = 0; i < clean.length; i++) {
         terms[clean[i]] = 1 + (terms[clean[i]] || 0);
     }
-    {% if page.stopwords %}/* apply stopwords */
-    var stopWords = {{ page.stopwords | downcase | split: ';' | jsonify }};
-    terms = terms.filter(function(a) { return stopWords.indexOf(a[0]) < 0;});{% endif %}
+    {% if include.stopwords %}/* apply stopwords */
+    var stopWords = {{ include.stopwords | downcase | split: ';' | jsonify }};
+    //terms = terms.filter(function(a) { return stopWords.indexOf(a[0]) < 0;});{% endif %}
     /* calculate max size */
     var counts = Object.keys(terms).map(function(key){return terms[key]});
     var countMax = counts.reduce(function(a, b) { return Math.max(a, b); });
