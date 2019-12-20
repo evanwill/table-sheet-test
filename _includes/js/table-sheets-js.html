@@ -1,0 +1,44 @@
+<script type="text/javascript" language="javascript" src="{{ '/assets/lib/datatables/datatables.min.js' | absolute_url }}"></script>
+<script>
+// json api for default first sheet
+var sheetUrl = "https://spreadsheets.google.com/feeds/list/{{ include.google-sheet-id }}/default/public/values?alt=json";
+
+// init datatables and use it to fetch json
+$('#item-table').DataTable( {
+    // use DataTables ajax load json
+    ajax: { 
+        url: sheetUrl, 
+        // use function to transform json into array, throwing out extra data
+        "dataSrc": function ( json ) {
+            var data = [];
+            var rows = json.feed.entry;
+            $(rows).each(function () { 
+                data.push([ {% for f in include.fields %}this.gsx${{ f.field }}.$t{% unless forloop.last %},{% endunless %}{% endfor %} ]);
+            });
+            return data;
+        }
+    },
+    // defer render to speed up large sets
+    "deferRender": true,
+    // enable pagination 
+    "paging": true,
+    "lengthMenu": [[ 25, 50, 100, -1], [ 25, 50, 100, "All"]],
+    // add download features
+    dom: 'B<"row mt-2"<"col-md-6"l><"col-md-6"f>>t<"row"<"col-md-6"i><"col-md-6"p>>',
+    buttons: [ 'excelHtml5', 'csvHtml5' ],
+    // create the columns headers
+    columns: [ {% for f in include.fields %}{ title: "{{ f.display_name }}" }{% unless forloop.last %},{% endunless %}{% endfor %} ],
+    /*
+    columnDefs: [ 
+        // turn relative link into absolute
+        { "render": function ( data ) { return '{{ site.url }}' + data; },"targets": {{ fcount }} },
+        // combine link with first column
+        { "render": function ( data, type, row ) { return '<a href="' + row['{{ fcount }}'] +'">'+ data +'</a>'; },"targets": 0 },
+        // hide the link column
+        { "visible": false,  "targets": [ {{ fcount }} ] }
+    ],*/
+    // sort based on the configured column
+    order: [[ {{ include.sort-column | default: 0 }}, "{{ include.sort-order | default: 'asc' }}" ]]
+});
+
+</script>
