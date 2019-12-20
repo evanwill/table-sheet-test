@@ -1,25 +1,13 @@
 # web table 
 # Jekyll web table Generator
 
-# Site settings
+####################
+# Site Settings
+#
 title: Sheets Demo
 # header and head metadata
 description: "Demo using google sheets with CollectionBuilder static web stack" 
-
-# ID number of your google sheet
-google-sheet-id: 1dUAPI7nge5PWTksdUITA9IbgA_Csz2gtVSCnjWz1CjE
-# column to sort on, 0 to number of columns [optional]
-sort-column: 1
-# order of sort, either asc or desc [optional]
-sort-order: desc
-# field to create a cloud from
-cloud-field: subject
-# stopwords to remove from cloud, ";" separated list [optional]
-cloud-stopwords: the;he
-
-# URL variables
-# site domain 
-# on GH-pages, following pattern https://yourusername.github.io
+# site domain, on GH-pages, following pattern https://yourusername.github.io
 url: https://evanwill.github.io
 # location on the domain
 # on GH-pages the repository name, /yourreponame
@@ -27,14 +15,37 @@ baseurl: /table-sheet-test
 # location of code (repository link)
 source-code: https://github.com/evanwill/table-sheet-test
 
-# Note: use environment variable on build command to include analytics
-# JEKYLL_ENV=production jekyll build
-# if present, used to add analytics during build
-google-analytics-id: 
+# ID number of your google sheet
+google-sheet-id: 1dUAPI7nge5PWTksdUITA9IbgA_Csz2gtVSCnjWz1CjE
 
-# add liquid profiler to id bottlenecks
-# profile: true
+####################
+# Table Config
+#
+# columns, where field = the exact column name on google sheets
+table-columns: 
+  - field: title
+    display_name: Title
+  - field: date
+    display_name: Date
+  - field: creator
+    display_name: Creator
+  - field: subject
+    display_name: Subjects
+# column to sort on, 0 to number of columns [optional]
+sort-column: 1
+# order of sort, either asc or desc [optional]
+sort-order: desc
 
+####################
+# Cloud Config
+#
+# field to create a cloud from
+cloud-field: subject
+# stopwords to remove from cloud, ";" separated list [optional]
+# not working right now!
+cloud-stopwords: the;he
+
+# Technical stuff
 exclude: [docs/, Rakefile, README.md, LICENSE]
 
 # compress CSS output
